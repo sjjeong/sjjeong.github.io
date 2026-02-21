@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>앱 지원 & 개인정보 처리방침</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f2ec;
+      --ink: #1a1410;
+      --muted: #7a6f63;
+      --accent: #c0392b;
+      --border: #d4cfc8;
+      --card: #fdfaf6;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Serif KR', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 3rem 2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h1 span { color: var(--accent); }
+
+    /* Tab navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .tab-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      border: none;
+      background: none;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      position: relative;
+      top: 1px;
+    }
+
+    .tab-btn:hover { color: var(--ink); }
+
+    .tab-btn.active {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Panels */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .intro {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .contact-box {
+      border: 2px solid var(--ink);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .contact-box p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .email-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    .email-link:hover { color: var(--accent); }
+
+    /* Privacy */
+    .summary-box {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 1.5rem 2rem;
+      margin-bottom: 3rem;
+      border-radius: 2px;
+    }
+
+    .summary-box .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      opacity: 0.6;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+    }
+
+    .summary-box p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; }
+
+    p, li {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .highlight { color: var(--ink); font-weight: 400; }
+
+    .contact-inline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--ink);
+      margin-top: 1rem;
+    }
+
+    .contact-inline a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+    }
+
+    .contact-inline a:hover { color: var(--accent); }
+
+    .updated {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111010;
+        --ink: #e8e3db;
+        --muted: #8a8078;
+        --border: #2a2825;
+        --card: #1a1916;
+      }
+      .summary-box {
+        background: #e8e3db;
+        color: #111010;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Seokjun Jeong — Apps</p>
+  <h1>지원 & 개인정보<span>.</span></h1>
+</header>
+
+<nav>
+  <button class="tab-btn active" onclick="switchTab('support', this)">앱 지원</button>
+  <button class="tab-btn" onclick="switchTab('privacy', this)">개인정보 처리방침</button>
+</nav>
+
+<main>
+
+  <!-- 앱 지원 -->
+  <div id="support" class="panel active">
+    <p class="intro">
+      앱 사용 중 문제가 발생하거나 궁금한 점이 있으시면 아래 이메일로 문의해 주세요.
+      최대한 빠른 시간 안에 답변 드리겠습니다.
+    </p>
+
+    <div class="card">
+      <p class="card-label">버그 신고 / Bug Report</p>
+      <h2>오류나 버그를 발견하셨나요?</h2>
+      <p>앱 버전, 기기 모델, iOS 버전과 함께 발생한 상황을 설명해 주시면 신속히 처리해 드리겠습니다.</p>
+    </div>
+
+    <div class="card">
+      <p class="card-label">기능 요청 / Feature Request</p>
+      <h2>더 원하는 기능이 있으신가요?</h2>
+      <p>사용자분들의 소중한 의견을 바탕으로 앱을 개선해 나가고 있습니다. 아이디어를 자유롭게 보내주세요.</p>
+    </div>
+
+    <div class="card">
+      <p class="card-label">기타 문의 / General Inquiry</p>
+      <h2>그 외 궁금한 점</h2>
+      <p>앱 사용 방법이나 기타 문의사항도 편하게 이메일로 연락해 주세요.</p>
+    </div>
+
+    <div class="contact-box">
+      <p>문의는 아래 이메일로 보내주세요.</p>
+      <a class="email-link" href="mailto:sjjeong1225@gmail.com">sjjeong1225@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- 개인정보 처리방침 -->
+  <div id="privacy" class="panel">
+    <p class="updated">최종 수정일 — 2025년 1월 1일</p>
+    <br>
+
+    <div class="summary-box">
+      <p class="label">요약 / TL;DR</p>
+      <p>본 앱은 개인정보를 수집, 저장, 전송하지 않습니다. 모든 데이터는 기기 내에서만 처리됩니다.</p>
+    </div>
+
+    <section>
+      <p class="section-num">01 / 수집하는 정보</p>
+      <h2>수집하는 개인정보</h2>
+      <p>본 앱은 <span class="highlight">어떠한 개인정보도 수집하지 않습니다.</span> 사용자가 앱에 입력하는 모든 정보는 오직 기기 내에서만 처리되며, 외부 서버로 전송되거나 저장되지 않습니다.</p>
+    </section>
+
+    <section>
+      <p class="section-num">02 / 제3자 제공</p>
+      <h2>제3자 정보 제공</h2>
+      <p>수집된 개인정보가 없으므로, 제3자에게 제공하는 정보 역시 존재하지 않습니다. 본 앱은 어떠한 광고 네트워크나 분석 도구도 사용하지 않습니다.</p>
+    </section>
+
+    <section>
+      <p class="section-num">03 / 데이터 보관</p>
+      <h2>데이터 보관 및 삭제</h2>
+      <p>앱이 로컬에 저장하는 설정 값(예: 사용자 입력 값)은 기기에만 보관됩니다. 앱을 삭제하면 모든 로컬 데이터가 함께 삭제됩니다.</p>
+    </section>
+
+    <section>
+      <p class="section-num">04 / 어린이 보호</p>
+      <h2>어린이 개인정보 보호</h2>
+      <p>본 앱은 만 14세 미만 어린이를 대상으로 하지 않으며, 어린이의 개인정보를 의도적으로 수집하지 않습니다.</p>
+    </section>
+
+    <section>
+      <p class="section-num">05 / 방침 변경</p>
+      <h2>개인정보 처리방침 변경</h2>
+      <p>본 방침이 변경될 경우, 이 페이지를 통해 공지하며 최상단의 수정일을 업데이트합니다. 중요한 변경이 있을 경우 앱 업데이트 노트를 통해서도 안내드립니다.</p>
+    </section>
+
+    <section>
+      <p class="section-num">06 / 문의</p>
+      <h2>개인정보 관련 문의</h2>
+      <p>개인정보 처리방침에 관한 문의는 아래 이메일로 연락해 주세요.</p>
+      <p class="contact-inline">→ <a href="mailto:sjjeong1225@gmail.com">sjjeong1225@gmail.com</a></p>
+    </section>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 Seokjun Jeong</p>
+</footer>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // URL hash로 탭 직접 링크 지원 (#privacy, #support)
+  const hash = location.hash.replace('#', '');
+  if (hash === 'privacy' || hash === 'support') {
+    const btn = document.querySelector(`.tab-btn[onclick*="${hash}"]`);
+    if (btn) switchTab(hash, btn);
+  }
+</script>
+
+</body>
+</html>
