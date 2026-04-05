@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>앱 지원 & 개인정보 처리방침</title>
+  <title>App Support & Privacy Policy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -31,6 +31,7 @@
       padding: 3rem 2rem 2rem;
       border-bottom: 1px solid var(--border);
       text-align: center;
+      position: relative;
     }
 
     .eyebrow {
@@ -50,6 +51,34 @@
     }
 
     h1 span { color: var(--accent); }
+
+    .lang-toggle {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 0.8rem;
+      border: none;
+      background: none;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .lang-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
 
     /* Tab navigation */
     nav {
@@ -265,92 +294,95 @@
 <body>
 
 <header>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">KO</button>
+  </div>
   <p class="eyebrow">Seokjun Jeong — <span id="header-app-name">Apps</span></p>
-  <h1>지원 & 개인정보<span>.</span></h1>
+  <h1 id="header-title">Support & Privacy<span>.</span></h1>
 </header>
 
 <nav>
-  <button class="tab-btn active" onclick="switchTab('support', this)">앱 지원</button>
-  <button class="tab-btn" onclick="switchTab('privacy', this)">개인정보 처리방침</button>
+  <button class="tab-btn active" id="tab-support" onclick="switchTab('support', this)" data-i18n="tab_support">Support</button>
+  <button class="tab-btn" id="tab-privacy" onclick="switchTab('privacy', this)" data-i18n="tab_privacy">Privacy Policy</button>
 </nav>
 
 <main>
 
-  <!-- 앱 지원 -->
+  <!-- Support -->
   <div id="support" class="panel active">
-    <p class="intro">
-      앱 사용 중 문제가 발생하거나 궁금한 점이 있으시면 아래 이메일로 문의해 주세요.
-      최대한 빠른 시간 안에 답변 드리겠습니다.
+    <p class="intro" data-i18n="support_intro">
+      If you experience any issues or have questions about our app, please reach out via email. We'll get back to you as soon as possible.
     </p>
 
     <div class="card">
-      <p class="card-label">버그 신고 / Bug Report</p>
-      <h2>오류나 버그를 발견하셨나요?</h2>
-      <p>앱 버전, 기기 모델, iOS 버전과 함께 발생한 상황을 설명해 주시면 신속히 처리해 드리겠습니다.</p>
+      <p class="card-label" data-i18n="card1_label">Bug Report</p>
+      <h2 data-i18n="card1_title">Found a bug?</h2>
+      <p data-i18n="card1_desc">Please include your app version, device model, and OS version along with a description of the issue. We'll fix it promptly.</p>
     </div>
 
     <div class="card">
-      <p class="card-label">기능 요청 / Feature Request</p>
-      <h2>더 원하는 기능이 있으신가요?</h2>
-      <p>사용자분들의 소중한 의견을 바탕으로 앱을 개선해 나가고 있습니다. 아이디어를 자유롭게 보내주세요.</p>
+      <p class="card-label" data-i18n="card2_label">Feature Request</p>
+      <h2 data-i18n="card2_title">Have an idea?</h2>
+      <p data-i18n="card2_desc">We improve our apps based on user feedback. Feel free to share your ideas anytime.</p>
     </div>
 
     <div class="card">
-      <p class="card-label">기타 문의 / General Inquiry</p>
-      <h2>그 외 궁금한 점</h2>
-      <p>앱 사용 방법이나 기타 문의사항도 편하게 이메일로 연락해 주세요.</p>
+      <p class="card-label" data-i18n="card3_label">General Inquiry</p>
+      <h2 data-i18n="card3_title">Other questions</h2>
+      <p data-i18n="card3_desc">For any other questions or inquiries, please don't hesitate to contact us by email.</p>
     </div>
 
     <div class="contact-box">
-      <p>문의는 아래 이메일로 보내주세요.</p>
+      <p data-i18n="contact_prompt">Send your message to:</p>
       <a class="email-link" href="mailto:sjjeong1225@gmail.com">sjjeong1225@gmail.com</a>
     </div>
   </div>
 
-  <!-- 개인정보 처리방침 -->
+  <!-- Privacy -->
   <div id="privacy" class="panel">
-    <p class="updated">최종 수정일 — 2025년 1월 1일</p>
+    <p class="updated" data-i18n="updated">Last updated — January 1, 2025</p>
     <br>
 
     <div class="summary-box">
-      <p class="label">요약 / TL;DR</p>
-      <p>본 앱은 개인정보를 수집, 저장, 전송하지 않습니다. 모든 데이터는 기기 내에서만 처리됩니다.</p>
+      <p class="label">TL;DR</p>
+      <p data-i18n="tldr">This app does not collect, store, or transmit any personal information. All data is processed on-device only.</p>
     </div>
 
     <section>
-      <p class="section-num">01 / 수집하는 정보</p>
-      <h2>수집하는 개인정보</h2>
-      <p><span id="privacy-app-name">본 앱</span>은 <span class="highlight">어떠한 개인정보도 수집하지 않습니다.</span> 사용자가 앱에 입력하는 모든 정보는 오직 기기 내에서만 처리되며, 외부 서버로 전송되거나 저장되지 않습니다.</p>
+      <p class="section-num" data-i18n="sec1_num">01 / Information Collected</p>
+      <h2 data-i18n="sec1_title">Information We Collect</h2>
+      <p><span id="privacy-app-name">This app</span> <span class="highlight" data-i18n="sec1_highlight">does not collect any personal information.</span> <span data-i18n="sec1_desc">All data you enter is processed solely on your device and is never transmitted to or stored on external servers.</span></p>
     </section>
 
     <section>
-      <p class="section-num">02 / 제3자 제공</p>
-      <h2>제3자 정보 제공</h2>
-      <p>본 앱은 Google AdMob을 통해 광고를 제공할 수 있으며, AdMob SDK가 광고 표시 목적으로 기기 식별자 등의 정보를 수집할 수 있습니다. 이 외에 개발자가 직접 수집하거나 제3자에게 제공하는 개인정보는 없습니다. AdMob의 개인정보 처리에 대한 자세한 내용은 <a href="https://policies.google.com/privacy" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none;">Google 개인정보처리방침</a>을 참조해 주세요.</p>
+      <p class="section-num" data-i18n="sec2_num">02 / Third Parties</p>
+      <h2 data-i18n="sec2_title">Third-Party Services</h2>
+      <p data-i18n="sec2_desc">This app may display ads via Google AdMob. The AdMob SDK may collect device identifiers for the purpose of serving ads. No personal information is directly collected or shared by the developer beyond this. For more details, please refer to <a href="https://policies.google.com/privacy" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none;">Google's Privacy Policy</a>.</p>
     </section>
 
     <section>
-      <p class="section-num">03 / 데이터 보관</p>
-      <h2>데이터 보관 및 삭제</h2>
-      <p>앱이 로컬에 저장하는 설정 값(예: 사용자 입력 값)은 기기에만 보관됩니다. 앱을 삭제하면 모든 로컬 데이터가 함께 삭제됩니다.</p>
+      <p class="section-num" data-i18n="sec3_num">03 / Data Retention</p>
+      <h2 data-i18n="sec3_title">Data Retention & Deletion</h2>
+      <p data-i18n="sec3_desc">Any settings or values stored locally by the app remain only on your device. All local data is deleted when you uninstall the app.</p>
     </section>
 
     <section>
-      <p class="section-num">04 / 어린이 보호</p>
-      <h2>어린이 개인정보 보호</h2>
-      <p>본 앱은 만 14세 미만 어린이를 대상으로 하지 않으며, 어린이의 개인정보를 의도적으로 수집하지 않습니다.</p>
+      <p class="section-num" data-i18n="sec4_num">04 / Children</p>
+      <h2 data-i18n="sec4_title">Children's Privacy</h2>
+      <p data-i18n="sec4_desc">This app is not directed at children under the age of 13, and we do not knowingly collect personal information from children.</p>
     </section>
 
     <section>
-      <p class="section-num">05 / 방침 변경</p>
-      <h2>개인정보 처리방침 변경</h2>
-      <p>본 방침이 변경될 경우, 이 페이지를 통해 공지하며 최상단의 수정일을 업데이트합니다. 중요한 변경이 있을 경우 앱 업데이트 노트를 통해서도 안내드립니다.</p>
+      <p class="section-num" data-i18n="sec5_num">05 / Policy Changes</p>
+      <h2 data-i18n="sec5_title">Changes to This Policy</h2>
+      <p data-i18n="sec5_desc">If this policy changes, we will update this page and revise the date at the top. Significant changes will also be noted in app update release notes.</p>
     </section>
 
     <section>
-      <p class="section-num">06 / 문의</p>
-      <h2>개인정보 관련 문의</h2>
-      <p>개인정보 처리방침에 관한 문의는 아래 이메일로 연락해 주세요.</p>
+      <p class="section-num" data-i18n="sec6_num">06 / Contact</p>
+      <h2 data-i18n="sec6_title">Contact Us</h2>
+      <p data-i18n="sec6_desc">For any questions regarding this privacy policy, please contact us at:</p>
       <p class="contact-inline">→ <a href="mailto:sjjeong1225@gmail.com">sjjeong1225@gmail.com</a></p>
     </section>
   </div>
@@ -362,6 +394,113 @@
 </footer>
 
 <script>
+  const i18n = {
+    en: {
+      page_title:    'App Support & Privacy Policy',
+      header_title:  'Support & Privacy<span>.</span>',
+      tab_support:   'Support',
+      tab_privacy:   'Privacy Policy',
+      support_intro: 'If you experience any issues or have questions about our app, please reach out via email. We\'ll get back to you as soon as possible.',
+      card1_label:   'Bug Report',
+      card1_title:   'Found a bug?',
+      card1_desc:    'Please include your app version, device model, and OS version along with a description of the issue. We\'ll fix it promptly.',
+      card2_label:   'Feature Request',
+      card2_title:   'Have an idea?',
+      card2_desc:    'We improve our apps based on user feedback. Feel free to share your ideas anytime.',
+      card3_label:   'General Inquiry',
+      card3_title:   'Other questions',
+      card3_desc:    'For any other questions or inquiries, please don\'t hesitate to contact us by email.',
+      contact_prompt:'Send your message to:',
+      updated:       'Last updated — January 1, 2025',
+      tldr:          'This app does not collect, store, or transmit any personal information. All data is processed on-device only.',
+      sec1_num:      '01 / Information Collected',
+      sec1_title:    'Information We Collect',
+      sec1_highlight:'does not collect any personal information.',
+      sec1_desc:     'All data you enter is processed solely on your device and is never transmitted to or stored on external servers.',
+      sec2_num:      '02 / Third Parties',
+      sec2_title:    'Third-Party Services',
+      sec2_desc:     'This app may display ads via Google AdMob. The AdMob SDK may collect device identifiers for the purpose of serving ads. No personal information is directly collected or shared by the developer beyond this. For more details, please refer to <a href="https://policies.google.com/privacy" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none;">Google\'s Privacy Policy</a>.',
+      sec3_num:      '03 / Data Retention',
+      sec3_title:    'Data Retention & Deletion',
+      sec3_desc:     'Any settings or values stored locally by the app remain only on your device. All local data is deleted when you uninstall the app.',
+      sec4_num:      '04 / Children',
+      sec4_title:    'Children\'s Privacy',
+      sec4_desc:     'This app is not directed at children under the age of 13, and we do not knowingly collect personal information from children.',
+      sec5_num:      '05 / Policy Changes',
+      sec5_title:    'Changes to This Policy',
+      sec5_desc:     'If this policy changes, we will update this page and revise the date at the top. Significant changes will also be noted in app update release notes.',
+      sec6_num:      '06 / Contact',
+      sec6_title:    'Contact Us',
+      sec6_desc:     'For any questions regarding this privacy policy, please contact us at:',
+    },
+    ko: {
+      page_title:    '앱 지원 & 개인정보 처리방침',
+      header_title:  '지원 & 개인정보<span>.</span>',
+      tab_support:   '앱 지원',
+      tab_privacy:   '개인정보 처리방침',
+      support_intro: '앱 사용 중 문제가 발생하거나 궁금한 점이 있으시면 아래 이메일로 문의해 주세요. 최대한 빠른 시간 안에 답변 드리겠습니다.',
+      card1_label:   '버그 신고 / Bug Report',
+      card1_title:   '오류나 버그를 발견하셨나요?',
+      card1_desc:    '앱 버전, 기기 모델, OS 버전과 함께 발생한 상황을 설명해 주시면 신속히 처리해 드리겠습니다.',
+      card2_label:   '기능 요청 / Feature Request',
+      card2_title:   '더 원하는 기능이 있으신가요?',
+      card2_desc:    '사용자분들의 소중한 의견을 바탕으로 앱을 개선해 나가고 있습니다. 아이디어를 자유롭게 보내주세요.',
+      card3_label:   '기타 문의 / General Inquiry',
+      card3_title:   '그 외 궁금한 점',
+      card3_desc:    '앱 사용 방법이나 기타 문의사항도 편하게 이메일로 연락해 주세요.',
+      contact_prompt:'문의는 아래 이메일로 보내주세요.',
+      updated:       '최종 수정일 — 2025년 1월 1일',
+      tldr:          '본 앱은 개인정보를 수집, 저장, 전송하지 않습니다. 모든 데이터는 기기 내에서만 처리됩니다.',
+      sec1_num:      '01 / 수집하는 정보',
+      sec1_title:    '수집하는 개인정보',
+      sec1_highlight:'어떠한 개인정보도 수집하지 않습니다.',
+      sec1_desc:     '사용자가 앱에 입력하는 모든 정보는 오직 기기 내에서만 처리되며, 외부 서버로 전송되거나 저장되지 않습니다.',
+      sec2_num:      '02 / 제3자 제공',
+      sec2_title:    '제3자 정보 제공',
+      sec2_desc:     '본 앱은 Google AdMob을 통해 광고를 제공할 수 있으며, AdMob SDK가 광고 표시 목적으로 기기 식별자 등의 정보를 수집할 수 있습니다. 이 외에 개발자가 직접 수집하거나 제3자에게 제공하는 개인정보는 없습니다. 자세한 내용은 <a href="https://policies.google.com/privacy" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none;">Google 개인정보처리방침</a>을 참조해 주세요.',
+      sec3_num:      '03 / 데이터 보관',
+      sec3_title:    '데이터 보관 및 삭제',
+      sec3_desc:     '앱이 로컬에 저장하는 설정 값은 기기에만 보관됩니다. 앱을 삭제하면 모든 로컬 데이터가 함께 삭제됩니다.',
+      sec4_num:      '04 / 어린이 보호',
+      sec4_title:    '어린이 개인정보 보호',
+      sec4_desc:     '본 앱은 만 13세 미만 어린이를 대상으로 하지 않으며, 어린이의 개인정보를 의도적으로 수집하지 않습니다.',
+      sec5_num:      '05 / 방침 변경',
+      sec5_title:    '개인정보 처리방침 변경',
+      sec5_desc:     '본 방침이 변경될 경우, 이 페이지를 통해 공지하며 최상단의 수정일을 업데이트합니다. 중요한 변경이 있을 경우 앱 업데이트 노트를 통해서도 안내드립니다.',
+      sec6_num:      '06 / 문의',
+      sec6_title:    '개인정보 관련 문의',
+      sec6_desc:     '개인정보 처리방침에 관한 문의는 아래 이메일로 연락해 주세요.',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    const t = i18n[lang];
+    document.documentElement.lang = lang;
+    document.title = (appName ? appName + ' — ' : '') + t.page_title;
+    document.getElementById('header-title').innerHTML = t.header_title;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+  }
+
+  function setLang(lang) {
+    const url = new URL(location.href);
+    if (lang === 'en') {
+      url.searchParams.delete('lang');
+    } else {
+      url.searchParams.set('lang', lang);
+    }
+    history.replaceState(null, '', url.toString());
+    applyLang(lang);
+  }
+
   function switchTab(id, btn) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -369,16 +508,18 @@
     btn.classList.add('active');
   }
 
-  // URL 파라미터로 앱 이름 표시 (?app=PinDay)
+  // Init
   const params = new URLSearchParams(location.search);
   const appName = params.get('app');
   if (appName) {
     document.getElementById('header-app-name').textContent = appName;
     document.getElementById('privacy-app-name').textContent = appName;
-    document.title = appName + ' — 지원 & 개인정보 처리방침';
   }
 
-  // URL hash로 탭 직접 링크 지원 (#privacy, #support)
+  const langParam = params.get('lang');
+  applyLang(langParam === 'ko' ? 'ko' : 'en');
+
+  // Hash tab support
   const hash = location.hash.replace('#', '');
   if (hash === 'privacy' || hash === 'support') {
     const btn = document.querySelector(`.tab-btn[onclick*="${hash}"]`);
